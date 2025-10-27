@@ -715,20 +715,6 @@ document.addEventListener('DOMContentLoaded', () => {
     themeIcon.title = 'Switch to Light Mode';
   }
 });
-
-
-        // Mobile Menu Toggle
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-container')) {
-                navMenu.classList.remove('active');
-            }
-        });
-
         uploadArea.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', handleFileSelect);
 
