@@ -4,903 +4,702 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Image Compressor - Free Online Tool</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary: #667eea;
-    --secondary: #764ba2;
-    --bg-main: #f8f9fa;
-    --bg-card: #ffffff;
-    --text-primary: #1a202c;
-    --text-secondary: #4a5568;
-    --border: #e2e8f0;
-    --shadow: rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode {
-    --bg-main: #1a202c;
-    --bg-card: #2d3748;
-    --text-primary: #f7fafc;
-    --text-secondary: #cbd5e0;
-    --border: #4a5568;
-    --shadow: rgba(0, 0, 0, 0.3);
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-main);
-    color: var(--text-primary);
-    transition: all 0.3s ease;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header */
-.main-header {
-    background: var(--bg-card);
-    padding: 1.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-content {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.logo-icon {
-    font-size: 1.8rem;
-}
-
-.theme-toggle {
-    background: var(--primary);
-    border: none;
-    color: white;
-    padding: 0.7rem 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.theme-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-/* Main Content */
-main {
-    flex: 1;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Tool Section */
-.tool-section {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.page-header {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    line-height: 1.2;
-    font-weight: 700;
-}
-
-.page-header i {
-    font-size: 2.5rem;
-    color: var(--primary);
-}
-
-.subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Upload Area with Border */
-.upload-area {
-    border: 3px dashed var(--primary);
-    padding: 4rem 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    background: transparent;
-    max-width: 600px;
-    margin: 0 auto;
-    border-radius: 15px;
-}
-
-.upload-area:hover {
-    background: rgba(102, 126, 234, 0.05);
-}
-
-.upload-area.dragover {
-    background: rgba(102, 126, 234, 0.1);
-    border-color: var(--secondary);
-}
-
-.upload-icon {
-    font-size: 4.5em;
-    margin-bottom: 1.5rem;
-    color: var(--primary);
-}
-
-.upload-area h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.upload-area p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-/* Controls */
-.controls {
-    margin-top: 3rem;
-    display: none;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.control-group {
-    margin-bottom: 2rem;
-    text-align: left;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.8rem;
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-input[type="number"] {
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    background: var(--bg-card);
-    color: var(--text-primary);
-    transition: all 0.3s;
-}
-
-input[type="number"]:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-}
-
-.format-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.format-btn {
-    padding: 1rem;
-    border: none;
-    background: var(--bg-card);
-    color: var(--text-primary);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.format-btn:hover {
-    background: rgba(102, 126, 234, 0.1);
-    transform: translateY(-2px);
-}
-
-.format-btn.active {
-    background: var(--primary);
-    color: white;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-/* Compress Button with Border */
-.compress-btn {
-    width: 100%;
-    padding: 1.2rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    border: 2px solid var(--primary);
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s;
-    margin-top: 1.5rem;
-}
-
-.compress-btn:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.compress-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-}
-
-/* Preview Area */
-.preview-area {
-    display: none;
-    margin-top: 3rem;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.preview-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 2rem;
-}
-
-.preview-card {
-    padding: 0;
-    background: transparent;
-    text-align: left;
-}
-
-.preview-card h3 {
-    margin-bottom: 1.5rem;
-    color: var(--primary);
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.preview-card h3 i {
-    font-size: 1.3rem;
-}
-
-.preview-img {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    background: var(--bg-card);
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0;
-    color: var(--text-primary);
-    font-size: 1rem;
-}
-
-/* Download Button with Border */
-.download-btn {
-    width: 100%;
-    padding: 1.2rem;
-    background: #10b981;
-    color: white;
-    border: 2px solid #10b981;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.download-btn:hover {
-    background: #059669;
-    border-color: #059669;
-    transform: translateY(-2px);
-}
-
-.reset-btn {
-    width: 100%;
-    padding: 1.2rem;
-    background: #6b7280;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s;
-}
-
-.reset-btn:hover {
-    background: #4b5563;
-    transform: translateY(-2px);
-}
-
-.status {
-    text-align: center;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-radius: 8px;
-    font-weight: 600;
-    display: none;
-    font-size: 1rem;
-}
-
-.status.success {
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.status.error {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.status.processing {
-    background: #dbeafe;
-    color: #1e40af;
-}
-
-/* FAQ Section */
-.faq-section {
-}
-
-.faq-header {
-    text-align: center;
-}
-
-.faq-header h2 {
-    color: var(--primary);
-    font-size: 2.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.faq-header p {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.faq-item {
-    padding: 2rem 0;
-}
-
-.faq-question {
-    display: flex;
-    justify-content: between;
-    align-items: center;
-    cursor: pointer;
-    padding: 1rem 0;
-}
-
-.faq-question h3 {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.faq-question i:first-child {
-    color: var(--primary);
-    font-size: 1.1rem;
-    width: 24px;
-}
-
-.faq-toggle {
-    background: none;
-    border: none;
-    color: var(--primary);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.faq-answer {
-    padding: 0 2.5rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-.faq-item.active .faq-answer {
-    max-height: 500px;
-    padding: 1.5rem 2.5rem 0;
-}
-
-.faq-item.active .faq-toggle {
-    transform: rotate(180deg);
-}
-
-/* Footer */
-footer {
-    background: var(--bg-card);
-    color: var(--text-primary);
-    padding: 3rem 2rem 1rem;
-    margin-top: 4rem;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h3 {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-section h3 i {
-    font-size: 1.2rem;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-section a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.footer-section a i {
-    width: 20px;
-    font-size: 0.9rem;
-}
-
-.footer-section a:hover {
-    color: var(--primary);
-}
-
-.footer-section p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.social-links a {
-    font-size: 1.3rem;
-    transition: transform 0.3s;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--bg-main);
-    color: var(--text-secondary);
-}
-
-.social-links a:hover {
-    transform: scale(1.2);
-    background: var(--primary);
-    color: white;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .main-header {
-        padding: 1rem;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .page-header {
-        font-size: 2rem;
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-    
-    .page-header i {
-        font-size: 2rem;
-    }
-
-    main {
-        padding: 1.5rem;
-    }
-    
-    .upload-area {
-        padding: 3rem 1.5rem;
-    }
-    
-    .upload-icon {
-        font-size: 3.5em;
-    }
-    
-    .format-options {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-    }
-    
-    .theme-toggle {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .preview-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .preview-img {
-        height: 250px;
-    }
-    
-    .faq-header h2 {
-        font-size: 1.8rem;
-    }
-    
-    .faq-question h3 {
-        font-size: 1.1rem;
-    }
-    
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .page-header {
-        font-size: 1.8rem;
-    }
-    
-    .page-header i {
-        font-size: 1.8rem;
-    }
-    
-    .upload-area {
-        padding: 2rem 1rem;
-    }
-    
-    .upload-icon {
-        font-size: 3em;
-    }
-    
-    .subtitle {
-        font-size: 1.1rem;
-    }
-    
-    .faq-answer {
-        padding: 0 1.5rem;
-    }
-    
-    .faq-item.active .faq-answer {
-        padding: 1rem 1.5rem 0;
-    }
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --bg-main: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-main: #1a202c;
+            --bg-card: #2d3748;
+            --text-primary: #f7fafc;
+            --text-secondary: #cbd5e0;
+            --border: #4a5568;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--bg-card);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Ad Placement Areas */
+        .ad-container {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .ad-top {
+            margin-bottom: 30px;
+        }
+
+        .ad-sidebar {
+            position: sticky;
+            top: 100px;
+            margin-left: 20px;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        /* Tool Container */
+        .tool-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .upload-area {
+            border: 3px dashed var(--primary);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg-main);
+        }
+
+        .upload-area:hover {
+            background: var(--primary);
+            opacity: 0.1;
+        }
+
+        .upload-area.dragover {
+            background: var(--primary);
+            opacity: 0.2;
+        }
+
+        .upload-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: border 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .format-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .format-btn {
+            padding: 12px;
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .format-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .format-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .compress-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .compress-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .compress-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .preview-area {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .preview-card {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--bg-card);
+        }
+
+        .preview-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: var(--bg-main);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 12px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .download-btn:hover {
+            background: #059669;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.processing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .reset-btn {
+            width: 100%;
+            padding: 12px;
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .reset-btn:hover {
+            background: #4b5563;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+            box-shadow: 0 -2px 10px var(--shadow);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-sidebar {
+                position: static;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--bg-card);
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s;
+                box-shadow: 0 5px 10px var(--shadow);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .tool-container {
+                padding: 20px;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="header-content">
-            <div class="logo">
-                <span class="logo-icon"><i class="fa fa-compress-alt"></i></span>
-                <span>ImageCompress Pro</span>
-            </div>
-            <button class="theme-toggle" id="themeToggle">
-                <i id="themeIcon" class="fa fa-moon"></i>
-                <span id="themeText">Dark Mode</span>
-            </button>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🖼️</span>
+                <span>ImageCompress</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                        <span id="themeIcon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
     <main>
-        <section class="tool-section">
-            <h1 class="page-header">
-                <i class="fa fa-file-image"></i> 
-                Smart Image Compressor
-            </h1>
-            <p class="subtitle">Optimize your images to exact file sizes with intelligent compression and format conversion</p>
+        <!-- Top Ad Placement -->
+        <div class="ad-container ad-top">
+                <script type="text/javascript">
+	atOptions = {
+		'key' : '17bc7dfbc62fed0d61403b979d078ead',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//financialwagerepel.com/17bc7dfbc62fed0d61403b979d078ead/invoke.js"></script>
+        </div>
 
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-icon"><i class="fa fa-cloud-upload-alt"></i></div>
-                <h3>Click to Upload or Drag & Drop</h3>
-                <p>Supports JPG, PNG, WebP, BMP, GIF, SVG</p>
-                <input type="file" id="fileInput" accept="image/*">
+        <div class="content-wrapper">
+            <!-- Main Tool -->
+            <div class="tool-container">
+                <h1>🖼️ Smart Image Compressor</h1>
+                <p class="subtitle">Compress images to exact size with format conversion</p>
+
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <h3>Click to upload or drag & drop</h3>
+                    <p>Supports JPG, PNG, WebP, BMP, GIF</p>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+
+                <div class="controls" id="controls">
+                    <div class="control-group">
+                        <label>Target File Size (KB)</label>
+                        <input type="number" id="targetSize" value="50" min="1" max="10000" placeholder="Enter size in KB">
+                    </div>
+
+                    <div class="control-group">
+                        <label>Output Format</label>
+                        <div class="format-options">
+                            <button class="format-btn active" data-format="jpeg">JPEG</button>
+                            <button class="format-btn" data-format="png">PNG</button>
+                            <button class="format-btn" data-format="webp">WebP</button>
+                        </div>
+                    </div>
+
+                    <button class="compress-btn" id="compressBtn">Compress Image</button>
+                </div>
+
+                <div class="preview-area" id="previewArea">
+                    <div class="preview-grid">
+                        <div class="preview-card">
+                            <h3>Original Image</h3>
+                            <img class="preview-img" id="originalPreview" alt="Original">
+                            <div class="info-item">
+                                <span>Size:</span>
+                                <strong id="originalSize">-</strong>
+                            </div>
+                            <div class="info-item">
+                                <span>Dimensions:</span>
+                                <strong id="originalDimensions">-</strong>
+                            </div>
+                            <div class="info-item">
+                                <span>Format:</span>
+                                <strong id="originalFormat">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="preview-card">
+                            <h3>Compressed Image</h3>
+                            <img class="preview-img" id="compressedPreview" alt="Compressed">
+                            <div class="info-item">
+                                <span>Size:</span>
+                                <strong id="compressedSize">-</strong>
+                            </div>
+                            <div class="info-item">
+                                <span>Dimensions:</span>
+                                <strong id="compressedDimensions">-</strong>
+                            </div>
+                            <div class="info-item">
+                                <span>Format:</span>
+                                <strong id="compressedFormat">-</strong>
+                            </div>
+                            <div class="info-item">
+                                <span>Reduction:</span>
+                                <strong id="reduction">-</strong>
+                            </div>
+                            <button class="download-btn" id="downloadBtn">Download Compressed Image</button>
+                        </div>
+                    </div>
+                    <button class="reset-btn" id="resetBtn">Compress Another Image</button>
+                </div>
+
+                <div class="status" id="status"></div>
+
+                <!-- Bottom Ad Placement -->
+                <div class="ad-container" style="margin-top: 30px;">
+                        <script type="text/javascript">
+	atOptions = {
+		'key' : '17bc7dfbc62fed0d61403b979d078ead',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//financialwagerepel.com/17bc7dfbc62fed0d61403b979d078ead/invoke.js"></script>
+                </div>
             </div>
 
-            <div class="controls" id="controls">
-                <div class="control-group">
-                    <label><i class="fa fa-weight-hanging"></i> Target File Size (KB)</label>
-                    <input type="number" id="targetSize" value="100" min="1" max="10000" placeholder="Enter size in KB">
-                </div>
-
-                <div class="control-group">
-                    <label><i class="fa fa-cog"></i> Output Format</label>
-                    <div class="format-options">
-                        <button class="format-btn active" data-format="jpeg">
-                            <i class="fa fa-file-image"></i> JPEG
-                        </button>
-                        <button class="format-btn" data-format="png">
-                            <i class="fa fa-file-image"></i> PNG
-                        </button>
-                        <button class="format-btn" data-format="webp">
-                            <i class="fa fa-file-image"></i> WebP
-                        </button>
-                    </div>
-                </div>
-
-                <button class="compress-btn" id="compressBtn">
-                    <i class="fa fa-compress-arrows-alt"></i> Compress Image
-                </button>
-            </div>
-
-            <!-- Preview Area -->
-            <div class="preview-area" id="previewArea">
-                <div class="preview-grid">
-                    <div class="preview-card">
-                        <h3><i class="fa fa-image"></i> Original Image</h3>
-                        <img class="preview-img" id="originalPreview" alt="Original">
-                        <div class="info-item">
-                            <span>Size:</span>
-                            <strong id="originalSize">-</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Dimensions:</span>
-                            <strong id="originalDimensions">-</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Format:</span>
-                            <strong id="originalFormat">-</strong>
-                        </div>
-                    </div>
-
-                    <div class="preview-card">
-                        <h3><i class="fa fa-file-export"></i> Compressed Image</h3>
-                        <img class="preview-img" id="compressedPreview" alt="Compressed">
-                        <div class="info-item">
-                            <span>Size:</span>
-                            <strong id="compressedSize">-</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Dimensions:</span>
-                            <strong id="compressedDimensions">-</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Format:</span>
-                            <strong id="compressedFormat">-</strong>
-                        </div>
-                        <div class="info-item">
-                            <span>Reduction:</span>
-                            <strong id="reduction">-</strong>
-                        </div>
-                        <button class="download-btn" id="downloadBtn">
-                            <i class="fa fa-download"></i> Download Compressed Image
-                        </button>
-                    </div>
-                </div>
-                <button class="reset-btn" id="resetBtn">
-                    <i class="fa fa-redo"></i> Compress Another Image
-                </button>
-            </div>
-
-            <div class="status" id="status"></div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq-section">
-            <div class="faq-header">
-                <h2><i class="fa fa-question-circle"></i> Frequently Asked Questions</h2>
-                <p>Find answers to common questions about our image compression tool</p>
-            </div>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3><i class="fa fa-image"></i> What image formats do you support?</h3>
-                        <button class="faq-toggle"><i class="fa fa-chevron-down"></i></button>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We support all major image formats including JPG, PNG, WebP, BMP, GIF, and SVG. Our tool automatically detects the format and provides the best compression options for each type.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3><i class="fa fa-shield-alt"></i> Is my data secure?</h3>
-                        <button class="faq-toggle"><i class="fa fa-chevron-down"></i></button>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! All image processing happens directly in your browser. Your images are never uploaded to our servers, ensuring complete privacy and security.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3><i class="fa fa-chart-line"></i> How much can I compress my images?</h3>
-                        <button class="faq-toggle"><i class="fa fa-chevron-down"></i></button>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Compression rates vary depending on the image format and content. Typically, you can achieve 60-80% size reduction without noticeable quality loss. Our smart algorithm finds the optimal balance between size and quality.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3><i class="fa fa-infinity"></i> Are there any usage limits?</h3>
-                        <button class="faq-toggle"><i class="fa fa-chevron-down"></i></button>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No! Our tool is completely free with no usage limits. You can compress as many images as you need, with no watermarks or restrictions.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3><i class="fa fa-mobile-alt"></i> Is it mobile-friendly?</h3>
-                        <button class="faq-toggle"><i class="fa fa-chevron-down"></i></button>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! Our image compressor works perfectly on all devices including smartphones and tablets. The interface is optimized for touch screens and smaller displays.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-<script async="async" data-cfasync="false" src="//financialwagerepel.com/f5777957ec8b15bc0a54f95033420f83/invoke.js"></script>
+            <!-- Sidebar Ad -->
+            <div class="ad-sidebar">
+                <div class="ad-container">
+                        <script async="async" data-cfasync="false" src="//financialwagerepel.com/f5777957ec8b15bc0a54f95033420f83/invoke.js"></script>
 <div id="container-f5777957ec8b15bc0a54f95033420f83"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <h3><i class="fa fa-compress-alt"></i> About Us</h3>
-                <p>Free online image compression tool with intelligent format conversion. Compress images to exact sizes without quality loss.</p>
+                <h3>About Us</h3>
+                <p>Free online image compression tool with format conversion. Compress images to exact sizes without quality loss.</p>
                 <div class="social-links">
-                    <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
-                    <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
-                    <a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                    <a href="#" title="Facebook">📘</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="LinkedIn">💼</a>
                 </div>
             </div>
 
             <div class="footer-section">
-                <h3><i class="fa fa-link"></i> Quick Links</h3>
+                <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fa fa-star"></i> Features</a></li>
-                    <li><a href="#"><i class="fa fa-info-circle"></i> About</a></li>
-                    <li><a href="#"><i class="fa fa-blog"></i> Blog</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h3><i class="fa fa-life-ring"></i> Support</h3>
+                <h3>Support</h3>
                 <ul>
-                    <li><a href="#"><i class="fa fa-question"></i> FAQ</a></li>
-                    <li><a href="#"><i class="fa fa-headset"></i> Help Center</a></li>
-                    <li><a href="#"><i class="fa fa-envelope"></i> Contact Us</a></li>
-                    <li><a href="#"><i class="fa fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#help">Help Center</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h3><i class="fa fa-tools"></i> Tools</h3>
+                <h3>Tools</h3>
                 <ul>
-                    <li><a href="#"><i class="fa fa-compress"></i> Image Compressor</a></li>
-                    <li><a href="#"><i class="fa fa-expand"></i> Image Resizer</a></li>
-                    <li><a href="#"><i class="fa fa-exchange-alt"></i> Format Converter</a></li>
-                    <li><a href="#"><i class="fa fa-layer-group"></i> Bulk Optimizer</a></li>
+                    <li><a href="#compress">Image Compressor</a></li>
+                    <li><a href="#resize">Image Resizer</a></li>
+                    <li><a href="#convert">Format Converter</a></li>
+                    <li><a href="#optimize">Bulk Optimizer</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> ImageCompress Pro. All rights reserved. | Made with <i class="fa fa-heart" style="color: #e74c3c;"></i> for better web</p>
+            <p>&copy; 2025 ImageCompress. All rights reserved. | Made with ❤️ for better web</p>
         </div>
     </footer>
 
     <script>
-        // Auto update year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Image Compression Functionality
         let originalFile = null;
         let compressedBlob = null;
         let selectedFormat = 'jpeg';
@@ -916,23 +715,34 @@ footer {
         const resetBtn = document.getElementById('resetBtn');
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
-        const themeText = document.getElementById('themeText');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
 
         // Theme Toggle
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
-            themeIcon.className = isDark ? 'fa fa-sun' : 'fa fa-moon';
-            themeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            themeIcon.textContent = isDark ? '☀️' : '🌙';
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
         // Load saved theme
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
-            themeIcon.className = 'fa fa-sun';
-            themeText.textContent = 'Light Mode';
+            themeIcon.textContent = '☀️';
         }
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                navMenu.classList.remove('active');
+            }
+        });
 
         uploadArea.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', handleFileSelect);
@@ -1157,16 +967,7 @@ footer {
             controls.style.display = 'none';
             previewArea.style.display = 'none';
             status.style.display = 'none';
-            document.getElementById('targetSize').value = '100';
-            
-            // Reset upload area
-            uploadArea.innerHTML = `
-                <div class="upload-icon"><i class="fa fa-cloud-upload-alt"></i></div>
-                <h3>Click to Upload or Drag & Drop</h3>
-                <p>Supports JPG, PNG, WebP, BMP, GIF, SVG</p>
-            `;
-            uploadArea.style.background = 'transparent';
-            uploadArea.style.opacity = '1';
+            document.getElementById('targetSize').value = '50';
         }
 
         function formatFileSize(bytes) {
@@ -1180,39 +981,6 @@ footer {
             status.className = 'status ' + type;
             status.style.display = 'block';
         }
-
-        // FAQ Toggle Functionality
-        const faqItems = document.querySelectorAll('.faq-item');
-        
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const toggle = item.querySelector('.faq-toggle');
-            
-            question.addEventListener('click', () => {
-                // Close all other items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                
-                // Toggle current item
-                item.classList.toggle('active');
-            });
-            
-            toggle.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent double trigger
-                // Close all other items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                
-                // Toggle current item
-                item.classList.toggle('active');
-            });
-        });
     </script>
 </body>
 </html>
