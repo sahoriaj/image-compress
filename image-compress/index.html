@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress Image - iLoveIMG Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="compress.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                    <span>IMG</span>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <a href="index.html">All</a>
+                    <a href="index.html#optimize">Optimize</a>
+                    <a href="index.html#create">Create</a>
+                    <a href="index.html#edit">Edit</a>
+                    <a href="index.html#convert">Convert</a>
+                    <a href="index.html#security">Security</a>
+                </nav>
+
+                <button class="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <nav class="mobile-nav">
+                <a href="index.html">All</a>
+                <a href="index.html#optimize">Optimize</a>
+                <a href="index.html#create">Create</a>
+                <a href="index.html#edit">Edit</a>
+                <a href="index.html#convert">Convert</a>
+                <a href="index.html#security">Security</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Compressor Tool -->
+    <section class="compressor-section">
+        <div class="container">
+            <div class="compressor-header">
+                <h1 class="compressor-title">
+                    <i class="fas fa-compress-alt"></i>
+                    Compress IMAGE
+                </h1>
+                <p class="compressor-subtitle">Reduce file size with no visible quality loss</p>
+            </div>
+
+            <div class="compressor-tool">
+                <!-- Upload Area -->
+                <div class="upload-section">
+                    <div id="uploadArea" class="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drop your image here or click to browse</h3>
+                        <p>Supports JPG, PNG, WebP (Max: 10MB)</p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div id="controls" class="controls" style="display: none;">
+                    <div class="control-group">
+                        <label for="targetSize">Target Size (KB)</label>
+                        <input type="number" id="targetSize" value="50" min="1" max="10000">
+                    </div>
+
+                    <div class="control-group">
+                        <label>Output Format</label>
+                        <div class="format-buttons">
+                            <button class="format-btn active" data-format="jpeg">JPG</button>
+                            <button class="format-btn" data-format="png">PNG</button>
+                            <button class="format-btn" data-format="webp">WebP</button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="compressBtn" class="compress-btn">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                            Compress Image
+                        </button>
+                        <button id="resetBtn" class="reset-btn">
+                            <i class="fas fa-redo"></i>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div id="status" class="status" style="display: none;"></div>
+
+                <!-- Preview Area -->
+                <div id="previewArea" class="preview-area" style="display: none;">
+                    <div class="preview-container">
+                        <div class="preview-item">
+                            <h4>Original Image</h4>
+                            <img id="originalPreview" class="preview-image">
+                            <div class="image-info">
+                                <span><i class="fas fa-weight-hanging"></i> <span id="originalSize">-</span></span>
+                                <span><i class="fas fa-expand-alt"></i> <span id="originalDimensions">-</span></span>
+                                <span><i class="fas fa-file-image"></i> <span id="originalFormat">-</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-item">
+                            <h4>Compressed Image</h4>
+                            <img id="compressedPreview" class="preview-image">
+                            <div class="image-info">
+                                <span><i class="fas fa-weight-hanging"></i> <span id="compressedSize">-</span></span>
+                                <span><i class="fas fa-expand-alt"></i> <span id="compressedDimensions">-</span></span>
+                                <span><i class="fas fa-file-image"></i> <span id="compressedFormat">-</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="compression-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Size Reduction</span>
+                            <span class="stat-value" id="reduction">-</span>
+                        </div>
+                    </div>
+
+                    <div class="download-section">
+                        <button id="downloadBtn" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download Compressed Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-btn">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="compress.js"></script>
+</body>
+</html>
