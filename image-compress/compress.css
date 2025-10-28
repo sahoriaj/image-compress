@@ -1,0 +1,457 @@
+/* Compressor Tool Styles */
+.compressor-section {
+    padding: 40px 0 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.compressor-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.compressor-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.compressor-title i {
+    color: #4caf50;
+}
+
+.compressor-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.compressor-tool {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Upload Area */
+.upload-section {
+    margin-bottom: 30px;
+}
+
+.upload-area {
+    border: 3px dashed #3498db;
+    border-radius: 15px;
+    padding: 60px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(52, 152, 219, 0.05);
+}
+
+.upload-area:hover {
+    border-color: #2980b9;
+    background: rgba(52, 152, 219, 0.1);
+    transform: translateY(-2px);
+}
+
+.upload-area.dragover {
+    border-color: #27ae60;
+    background: rgba(39, 174, 96, 0.1);
+    transform: scale(1.02);
+}
+
+.upload-area i {
+    font-size: 4rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.upload-area h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.upload-area p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Controls */
+.controls {
+    margin-bottom: 30px;
+}
+
+.control-group {
+    margin-bottom: 25px;
+}
+
+.control-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+#targetSize {
+    width: 200px;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#targetSize:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.format-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.format-btn {
+    padding: 12px 25px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: white;
+    color: #7f8c8d;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 80px;
+}
+
+.format-btn.active {
+    border-color: #3498db;
+    background: #3498db;
+    color: white;
+}
+
+.format-btn:hover:not(.active) {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.compress-btn, .reset-btn {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.compress-btn {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+}
+
+.compress-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.compress-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.reset-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+/* Status */
+.status {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status.success {
+    background: rgba(39, 174, 96, 0.1);
+    color: #27ae60;
+    border: 1px solid #27ae60;
+}
+
+.status.error {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.status.processing {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+/* Preview Area */
+.preview-area {
+    margin-top: 30px;
+}
+
+.preview-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.preview-item {
+    text-align: center;
+}
+
+.preview-item h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.image-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-info span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.image-info i {
+    color: #3498db;
+}
+
+/* Compression Stats */
+.compression-stats {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    display: inline-block;
+    padding: 0 30px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Download Section */
+.download-section {
+    text-align: center;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3);
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.theme-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theme-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+    color: #ecf0f1;
+}
+
+body.dark-mode .compressor-tool {
+    background: rgba(44, 62, 80, 0.95);
+    color: #ecf0f1;
+}
+
+body.dark-mode .upload-area {
+    background: rgba(52, 152, 219, 0.1);
+    border-color: #3498db;
+}
+
+body.dark-mode .upload-area h3 {
+    color: #ecf0f1;
+}
+
+body.dark-mode .control-group label {
+    color: #ecf0f1;
+}
+
+body.dark-mode #targetSize {
+    background: #34495e;
+    border-color: #4a6572;
+    color: #ecf0f1;
+}
+
+body.dark-mode .format-btn {
+    background: #34495e;
+    border-color: #4a6572;
+    color: #bdc3c7;
+}
+
+body.dark-mode .format-btn.active {
+    background: #3498db;
+    border-color: #3498db;
+    color: white;
+}
+
+body.dark-mode .preview-item h4 {
+    color: #ecf0f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .compressor-tool {
+        padding: 30px 20px;
+        margin: 0 20px;
+    }
+
+    .compressor-title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .preview-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .format-buttons {
+        flex-direction: column;
+    }
+
+    #targetSize {
+        width: 100%;
+    }
+
+    .upload-area {
+        padding: 40px 20px;
+    }
+
+    .upload-area i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .compressor-title {
+        font-size: 1.8rem;
+    }
+
+    .compressor-subtitle {
+        font-size: 1rem;
+    }
+
+    .download-btn {
+        padding: 15px 25px;
+        font-size: 1rem;
+    }
+
+    .theme-toggle {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .theme-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
