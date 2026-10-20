@@ -1,0 +1,11 @@
+{
+  "name": "r2-worker",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "r2_buckets": [
+    {
+      "binding": "MY_BUCKET",
+      "bucket_name": "<YOUR_BUCKET_NAME>"
+    }
+  ]
+}
